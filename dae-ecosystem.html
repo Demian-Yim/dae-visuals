@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>D.A.E Ecosystem — 5명의 AI가 2,400+ 도구로 무장 — 통합 아키텍처</title>
+<style>
+  /* ---------- AX-Shared-Workflow Visual Standard v1.0 ---------- */
+  /* Inspired by Claude Cowork's HTML card-style architecture diagrams */
+
+  :root {
+    --bg: #f7f8fa;
+    --card-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    --radius: 16px;
+    --text-primary: #1a1a2e;
+    --text-secondary: #555;
+    --arrow: #94a3b8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Pretendard', 'Noto Sans KR', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    padding: 40px 24px;
+    line-height: 1.6;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: var(--radius);
+    padding: 40px;
+    box-shadow: var(--card-shadow);
+  }
+
+  /* ---------- Header ---------- */
+  .header {
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+  }
+  .header .subtitle {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-top: 4px;
+    margin-bottom: 32px;
+  }
+
+  /* ---------- Arrow connector ---------- */
+  .arrow-down {
+    display: flex;
+    justify-content: center;
+    margin: 16px 0;
+    color: var(--arrow);
+    font-size: 24px;
+  }
+
+  /* ---------- Platform cards (level 1) ---------- */
+  .platforms {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .platform-card {
+    border-radius: var(--radius);
+    padding: 24px;
+    color: white;
+    box-shadow: var(--card-shadow);
+  }
+  .platform-card.warm { background: linear-gradient(135deg, #f9a826 0%, #f7c548 100%); }
+  .platform-card.dark { background: linear-gradient(135deg, #1f2937 0%, #374151 100%); }
+  .platform-card.coral { background: linear-gradient(135deg, #ef4444 0%, #f87171 100%); }
+  .platform-card.purple { background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%); }
+  .platform-card.blue { background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%); }
+  .platform-card.green { background: linear-gradient(135deg, #10b981 0%, #34d399 100%); }
+
+  .platform-card h3 {
+    font-size: 18px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .platform-card ul {
+    list-style: none;
+    font-size: 13px;
+    line-height: 1.7;
+    opacity: 0.95;
+  }
+
+  /* ---------- Framework engine (level 2) ---------- */
+  .frameworks {
+    background: #f1f5f9;
+    border-radius: var(--radius);
+    padding: 20px;
+    text-align: center;
+  }
+  .frameworks .label {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+  }
+  .framework-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  .framework-tag {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: white;
+  }
+  .tag-purple { background: #8b5cf6; }
+  .tag-green { background: #10b981; }
+  .tag-orange { background: #f97316; }
+  .tag-blue { background: #3b82f6; }
+  .tag-yellow { background: #eab308; }
+  .tag-pink { background: #ec4899; }
+
+  /* ---------- Use case cards (level 3) ---------- */
+  .use-cases {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .use-case {
+    border: 2px solid;
+    border-radius: var(--radius);
+    padding: 20px;
+    background: white;
+  }
+  .use-case.purple { border-color: #c4b5fd; }
+  .use-case.teal { border-color: #5eead4; }
+  .use-case.amber { border-color: #fcd34d; }
+  .use-case.sky { border-color: #7dd3fc; }
+
+  .use-case h4 {
+    font-size: 15px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .use-case ul {
+    list-style: none;
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  /* ---------- Output pipeline ---------- */
+  .output-pipeline {
+    background: linear-gradient(90deg, #f1f5f9 0%, #e2e8f0 100%);
+    border-radius: var(--radius);
+    padding: 20px;
+    text-align: center;
+    border: 1px dashed #94a3b8;
+  }
+  .output-pipeline h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .output-pipeline .pipeline {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  /* ---------- Footer ---------- */
+  .footer {
+    margin-top: 32px;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 12px;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .platforms { grid-template-columns: 1fr; }
+    .use-cases { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>🚀 D.A.E Ecosystem — 5명의 AI가 2,400+ 도구로 무장</h1>
+    <div class="subtitle">USER → AI Agent Team → Skills/MCP/Agents → Output → Notion Backup</div>
+  </div>
+
+  <!-- LEVEL 1: PLATFORMS -->
+  <div class="platforms">
+    <div class="platform-card warm">
+      <h3>🤗 Claude (Max)</h3>
+      <ul>
+        <li>Opus 4.7 (1M context)</li>
+        <li>2,258 Skills + 53 Agents</li>
+        <li>11 MCP Servers · Git/Build</li>
+      </ul>
+    </div>
+    <div class="platform-card dark">
+      <h3>💻 Antigravity (Eva)</h3>
+      <ul>
+        <li>Gemini Pro 2.5</li>
+        <li>기획 4단계 · MCP 허브</li>
+        <li>Firebase · Cloud Run</li>
+      </ul>
+    </div>
+    <div class="platform-card coral">
+      <h3>🚀 OpenClaw (Will)</h3>
+      <ul>
+        <li>Codex API · 24/7 VPS</li>
+        <li>Telegram Bot 원격 지시</li>
+        <li>자동화 · 알림</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="arrow-down">↓</div>
+
+  <!-- LEVEL 2: FRAMEWORK ENGINE -->
+  <div class="frameworks">
+    <div class="label">⚙️ 프레임워크 엔진</div>
+    <div class="framework-tags">
+      <span class="framework-tag tag-purple">AX 8 Phase</span>
+      <span class="framework-tag tag-green">DDD</span>
+      <span class="framework-tag tag-orange">Event Storming</span>
+      <span class="framework-tag tag-blue">EARS</span>
+      <span class="framework-tag tag-yellow">TDD</span>
+      <span class="framework-tag tag-pink">Notion Backup</span>
+    </div>
+  </div>
+
+  <div class="arrow-down">↓</div>
+
+  <!-- LEVEL 3: USE CASES -->
+  <div class="use-cases">
+    <div class="use-case purple">
+      <h4>🎓 개발 (421)</h4>
+      <ul>
+        <li>TDD · 코드 리뷰</li>
+        <li>빌드 자동화 · CI/CD</li>
+        <li>디버그 · 보안 감사</li>
+      </ul>
+    </div>
+    <div class="use-case teal">
+      <h4>⚡ 한국 서비스 (287)</h4>
+      <ul>
+        <li>SRT · KBO · 카카오톡</li>
+        <li>법률 · 국회 API</li>
+        <li>HWP · 공공데이터</li>
+      </ul>
+    </div>
+    <div class="use-case amber">
+      <h4>📋 디자인+PM (362)</h4>
+      <ul>
+        <li>UX 리서치 · 디자인 토큰</li>
+        <li>PM 발견-전략-실행</li>
+        <li>사용자 심리학</li>
+      </ul>
+    </div>
+    <div class="use-case sky">
+      <h4>🎯 금융 (156)</h4>
+      <ul>
+        <li>KIS API 매매</li>
+        <li>IRP 포트폴리오</li>
+        <li>시장 분석</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="arrow-down">↓</div>
+
+  <!-- OUTPUT PIPELINE -->
+  <div class="output-pipeline">
+    <h3>📦 OUTPUT PIPELINE</h3>
+    <div class="pipeline">로컬 산출물 → Notion 백업 → Output Dashboard → Stakeholder 공유</div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    AX-Shared-Workflow Visual Standard v1.0 · D.A.E Ecosystem
+  </div>
+
+</div>
+
+</body>
+</html>
