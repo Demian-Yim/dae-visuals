@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Eva → Max 릴레이 워크플로우 — 워크플로우</title>
+<style>
+  /* AX-Shared-Workflow Visual Standard v1.0 — Workflow Template */
+  :root {
+    --bg: #f7f8fa;
+    --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    --radius: 16px;
+    --text: #1a1a2e;
+    --muted: #64748b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Pretendard', 'Noto Sans KR', -apple-system, sans-serif;
+    background: var(--bg); color: var(--text); padding: 40px 24px; line-height: 1.6;
+  }
+  .container {
+    max-width: 1200px; margin: 0 auto; background: white;
+    border-radius: var(--radius); padding: 40px; box-shadow: var(--shadow);
+  }
+
+  .header { text-align: center; margin-bottom: 32px; }
+  .header h1 { font-size: 28px; font-weight: 700; }
+  .header .subtitle { color: var(--muted); font-size: 14px; margin-top: 6px; }
+
+  /* Phases row */
+  .phases {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    align-items: stretch;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .phase {
+    border-radius: var(--radius);
+    padding: 24px 20px;
+    text-align: center;
+    color: white;
+    box-shadow: var(--shadow);
+  }
+  .phase.input { background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); }
+  .phase.process { background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); }
+  .phase.output { background: linear-gradient(135deg, #10b981 0%, #34d399 100%); }
+
+  .phase .icon { font-size: 36px; margin-bottom: 8px; }
+  .phase .label { font-size: 11px; opacity: 0.9; letter-spacing: 1px; text-transform: uppercase; }
+  .phase h3 { font-size: 18px; margin: 4px 0 12px; }
+  .phase ul {
+    list-style: none; font-size: 13px; opacity: 0.95;
+    text-align: left; padding-left: 4px;
+  }
+  .phase ul li::before { content: "▸ "; opacity: 0.7; }
+
+  .arrow {
+    display: flex; align-items: center; justify-content: center;
+    color: #94a3b8; font-size: 28px; font-weight: 700;
+  }
+
+  /* Steps detail */
+  .steps {
+    background: #f8fafc; border-radius: var(--radius); padding: 24px;
+    border: 1px solid #e2e8f0;
+  }
+  .steps-title {
+    font-size: 14px; color: var(--muted); margin-bottom: 16px;
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+  .step-list {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  }
+  .step {
+    background: white; border-radius: 10px; padding: 16px;
+    border-left: 4px solid #6366f1;
+  }
+  .step-num {
+    display: inline-block;
+    background: #6366f1; color: white;
+    width: 24px; height: 24px; border-radius: 50%;
+    text-align: center; line-height: 24px;
+    font-size: 12px; font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .step h4 { font-size: 14px; margin-bottom: 6px; }
+  .step p { font-size: 12px; color: var(--muted); }
+
+  /* Result banner */
+  .result {
+    margin-top: 32px;
+    background: linear-gradient(90deg, #ecfdf5 0%, #d1fae5 100%);
+    border-radius: var(--radius);
+    padding: 20px;
+    text-align: center;
+    border: 1px dashed #10b981;
+  }
+  .result h3 {
+    font-size: 16px; margin-bottom: 6px; color: #065f46;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .result p { font-size: 14px; color: #047857; }
+
+  .footer {
+    margin-top: 24px; text-align: center;
+    color: var(--muted); font-size: 12px;
+  }
+
+  @media (max-width: 768px) {
+    .phases { grid-template-columns: 1fr; }
+    .arrow { transform: rotate(90deg); padding: 8px 0; }
+    .step-list { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <h1>🔄 Eva → Max 릴레이 워크플로우</h1>
+    <div class="subtitle">기획은 Eva, 실행은 Max — 양쪽 강점을 100% 활용</div>
+  </div>
+
+  <!-- 3-Phase Flow -->
+  <div class="phases">
+    <div class="phase input">
+      <div class="icon">📥</div>
+      <div class="label">INPUT</div>
+      <h3>사용자 요청</h3>
+      <ul>
+        <li>비즈니스 요구사항</li>
+        <li>제약·일정·예산</li>
+        <li>기존 자산·컨텍스트</li>
+      </ul>
+    </div>
+    <div class="arrow">→</div>
+    <div class="phase process">
+      <div class="icon">⚙️</div>
+      <div class="label">PROCESS</div>
+      <h3>Eva 기획 4단계</h3>
+      <ul>
+        <li>스킬 매핑</li>
+        <li>DDD & Event Storming</li>
+        <li>프롬프트 래핑 → Max</li>
+      </ul>
+    </div>
+    <div class="arrow">→</div>
+    <div class="phase output">
+      <div class="icon">📤</div>
+      <div class="label">OUTPUT</div>
+      <h3>Max 실행 산출물</h3>
+      <ul>
+        <li>코드·테스트·빌드</li>
+        <li>HTML 비주얼 + Mermaid</li>
+        <li>Notion 백업 자동</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Detailed Steps -->
+  <div class="steps">
+    <div class="steps-title">📋 단계별 세부 작업</div>
+    <div class="step-list">
+      <div class="step">
+        <span class="step-num">1</span>
+        <h4>스킬 매핑</h4>
+        <p>2,258개 스킬 중 적합한 것 자동 스캔, 통합 설계</p>
+      </div>
+      <div class="step">
+        <span class="step-num">2</span>
+        <h4>DDD + Event Storming</h4>
+        <p>도메인·이벤트·바운디드 컨텍스트 사전 구조화</p>
+      </div>
+      <div class="step">
+        <span class="step-num">3</span>
+        <h4>기획 문서화</h4>
+        <p>PRD + 전체 구현 계획 (Implementation Plan)</p>
+      </div>
+      <div class="step">
+        <span class="step-num">4</span>
+        <h4>프롬프트 래핑</h4>
+        <p>Max 전달용 작업 지시. 시각화 요청 포함 필수</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Result -->
+  <div class="result">
+    <h3>✅ 한 사이클 = 산출물 + 노션 백업</h3>
+    <p>AX 8 Phase 게이트 통과 → 다음 작업으로 자연스럽게 연결</p>
+  </div>
+
+  <div class="footer">
+    AX-Shared-Workflow Visual Standard v1.0 · Workflow Template
+  </div>
+
+</div>
+
+</body>
+</html>

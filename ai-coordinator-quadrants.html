@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>비개발자 AI 코디네이터를 위한 4가지 활용 영역 — 카드 매트릭스</title>
+<style>
+  /* AX-Shared-Workflow Visual Standard v1.0 — Card Grid Template */
+  :root {
+    --bg: #f7f8fa;
+    --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    --shadow-hover: 0 8px 24px rgba(0,0,0,0.12);
+    --radius: 16px;
+    --text: #1a1a2e;
+    --muted: #64748b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Pretendard', 'Noto Sans KR', -apple-system, sans-serif;
+    background: var(--bg); color: var(--text); padding: 40px 24px; line-height: 1.6;
+  }
+  .container {
+    max-width: 1200px; margin: 0 auto; background: white;
+    border-radius: var(--radius); padding: 40px; box-shadow: var(--shadow);
+  }
+
+  .header { text-align: center; margin-bottom: 32px; }
+  .header h1 { font-size: 28px; font-weight: 700; }
+  .header .subtitle { color: var(--muted); font-size: 14px; margin-top: 6px; }
+
+  /* Optional 2x2 axis labels (for matrix-style) */
+  .matrix-wrapper { position: relative; padding: 32px 48px; }
+  .axis-y, .axis-x {
+    position: absolute;
+    color: var(--muted); font-size: 11px;
+    text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600;
+  }
+  .axis-y { left: 0; top: 50%; transform: rotate(-90deg) translateX(50%); transform-origin: left top; }
+  .axis-x { bottom: 0; left: 50%; transform: translateX(-50%); }
+
+  /* Card grid 2x2 */
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    border-radius: var(--radius);
+    padding: 28px;
+    background: white;
+    border: 2px solid;
+    transition: all 0.2s;
+    position: relative;
+    min-height: 200px;
+  }
+  .card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+
+  .card.q1 { border-color: #fbbf24; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 30%, #ffffff 100%); }
+  .card.q2 { border-color: #f87171; background: linear-gradient(135deg, #fecaca 0%, #fca5a5 30%, #ffffff 100%); }
+  .card.q3 { border-color: #60a5fa; background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 30%, #ffffff 100%); }
+  .card.q4 { border-color: #34d399; background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 30%, #ffffff 100%); }
+
+  .card-icon { font-size: 32px; margin-bottom: 12px; }
+  .card-label {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .card.q1 .card-label { background: #fbbf24; color: white; }
+  .card.q2 .card-label { background: #ef4444; color: white; }
+  .card.q3 .card-label { background: #3b82f6; color: white; }
+  .card.q4 .card-label { background: #10b981; color: white; }
+
+  .card h3 { font-size: 18px; margin-bottom: 12px; color: var(--text); }
+  .card .desc { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+  .card ul {
+    list-style: none; font-size: 13px; color: var(--text); line-height: 1.8;
+  }
+  .card ul li::before { content: "● "; opacity: 0.5; font-size: 10px; }
+
+  .legend {
+    margin-top: 32px;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 10px;
+    text-align: center;
+  }
+  .legend .label {
+    font-size: 12px; color: var(--muted); margin-bottom: 8px;
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+  .legend .text { font-size: 14px; color: var(--text); }
+
+  .footer {
+    margin-top: 24px; text-align: center;
+    color: var(--muted); font-size: 12px;
+  }
+
+  @media (max-width: 768px) {
+    .grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <h1>📊 비개발자 AI 코디네이터를 위한 4가지 활용 영역</h1>
+    <div class="subtitle">도메인 전문성 × AI 도구 = 학습·창작·실험·확장</div>
+  </div>
+
+  <div class="matrix-wrapper">
+    <!-- Optional axis labels (delete if not matrix) -->
+    <div class="axis-y">▲ 창작·확장</div>
+
+    <div class="grid">
+      <!-- Quadrant 1 (top-left) -->
+      <div class="card q1">
+        <div class="card-icon">🎓</div>
+        <span class="card-label">교육·학습</span>
+        <h3>AI 강의·코칭</h3>
+        <p class="desc">기업교육 강사·HRD 담당자가 즉시 활용</p>
+        <ul>
+          <li>커리큘럼 설계·실습환경</li>
+          <li>수강생 피드백 루프</li>
+          <li>교육용 앱 자동 제작</li>
+        </ul>
+      </div>
+
+      <!-- Quadrant 2 (top-right) -->
+      <div class="card q2">
+        <div class="card-icon">⚡</div>
+        <span class="card-label">실행·구축</span>
+        <h3>앱·서비스 개발</h3>
+        <p class="desc">Eva 기획 → Max 코드, 비개발자도 가능</p>
+        <ul>
+          <li>Gradio·Streamlit 프로토타입</li>
+          <li>Firebase·Cloud Run 배포</li>
+          <li>GitHub Pages 정적 호스팅</li>
+        </ul>
+      </div>
+
+      <!-- Quadrant 3 (bottom-left) -->
+      <div class="card q3">
+        <div class="card-icon">📋</div>
+        <span class="card-label">컨설팅·전략</span>
+        <h3>AX 컨설팅</h3>
+        <p class="desc">도메인 분석부터 ROI 근거까지 패키징</p>
+        <ul>
+          <li>DDD 도메인 분석</li>
+          <li>Event Storming 워크숍</li>
+          <li>PoC + ROI 보고서</li>
+        </ul>
+      </div>
+
+      <!-- Quadrant 4 (bottom-right) -->
+      <div class="card q4">
+        <div class="card-icon">🎯</div>
+        <span class="card-label">리서치·인사이트</span>
+        <h3>학습·코칭</h3>
+        <p class="desc">Reddit·NotebookLM으로 지속 업데이트</p>
+        <ul>
+          <li>트렌드 큐레이션</li>
+          <li>논문·모델 리뷰</li>
+          <li>코칭 진단 도구</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="axis-x">전문성·깊이 ▶</div>
+  </div>
+
+  <div class="legend">
+    <div class="label">📌 핵심 인사이트</div>
+    <div class="text">Eva·Max 릴레이 + AX-Workflow + Notion 백업 → 4영역 모두 동일한 파이프라인으로 작동</div>
+  </div>
+
+  <div class="footer">
+    AX-Shared-Workflow Visual Standard v1.0 · Card Grid Template
+  </div>
+
+</div>
+
+</body>
+</html>
